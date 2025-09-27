@@ -25,13 +25,6 @@ const reponerStock = (cantidadRepuesta) => {
 };
 
 
-registrarVenta(10);   
-registrarVenta(45);  
-reponerStock(20);     
-registrarVenta(5);    
-
-
-mostrarInventario();
 
 
 const simularDiaDeVentas = () => {
@@ -64,7 +57,52 @@ function diagnosticoInventario() {
   }
 }
 
-simularDiaDeVentas();
-mostrarInventario();
-diagnosticoInventario();
 
+function iniciarGestion() {
+  while (true) {
+    let opcion = prompt(
+      "=== Menú de Inventario ===\n" +
+      "1 - Registrar Venta\n" +
+      "2 - Reponer Stock\n" +
+      "3 - Simular Día de Ventas\n" +
+      "4 - Ver Diagnóstico de Inventario\n" +
+      "5 - Mostrar Inventario Actual\n" +
+      "6 - Cerrar programa\n" +
+      "Seleccione una opción:"
+    );
+
+    switch (opcion) {
+      case "1": // Venta
+        let cantidadVenta = parseInt(prompt("Ingrese la cantidad a vender:"));
+        registrarVenta(cantidadVenta);
+        break;
+
+      case "2": // Reposición
+        let cantidadReposicion = parseInt(prompt("Ingrese la cantidad a reponer:"));
+        reponerStock(cantidadReposicion);
+        break;
+
+      case "3": // Simulación
+        simularDiaDeVentas();
+        break;
+
+      case "4": // Diagnóstico
+        diagnosticoInventario();
+        break;
+
+      case "5": // Inventario
+        mostrarInventario();
+        break;
+
+      case "6": // Salir
+        console.log("Programa finalizado. ¡Hasta luego!");
+        return; // sale del while y termina la función
+
+      default: // Opción inválida
+        console.log("Opción no válida. Intente nuevamente.");
+    }
+  }
+}
+
+
+iniciarGestion();
